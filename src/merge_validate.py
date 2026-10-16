@@ -164,12 +164,36 @@ def process_scores_and_export(df_merged):
         print("[Cảnh báo] Không có dữ liệu hợp lệ; đã xuất CSV rỗng và báo cáo kiểm định.")
         return
 
-    # Xử lý N/A theo 2 cách (A và B)
-    # Cách A: Thay N/A bằng 0 điểm
-    df_merged['Level_Way_A'] = df_merged['Level_parsed'].apply(lambda x: 0 if x == "N/A" or pd.isna(x) else float(x))
-    
-    # Cách B: Giữ N/A là NaN (bỏ qua khi tính trung bình)
-    df_merged['Level_Way_B'] = df_merged['Level_parsed'].apply(lambda x: np.nan if x == "N/A" or pd.isna(x) else float(x))
+
+    # Cách A: N/A không tham gia tính trung bình
+    # Cách B: N/A được quy đổi thành mức 1
+
+    def to_numeric_score(value):
+        if pd.isna(value) or str(value).strip().upper() == "N/A":
+            return np.nan
+        return float(value)
+
+    # Chuyển điểm hợp lệ về dạng số; N/A và dữ liệu thiếu thành NaN
+    df_merged["Level_numeric"] = df_merged["Level_parsed"].apply(
+        to_numeric_score
+    )
+
+    # Cách A: giữ NaN để pandas tự bỏ qua khi tính trung bình
+    df_merged["Level_Way_A"] = df_merged["Level_numeric"]
+
+    # Cách B: quy đổi N/A thành mức 1
+    # Dữ liệu thiếu do chưa chấm KHÔNG tự động đổi thành 1
+    is_na = (
+        df_merged["Level_parsed"]
+        .astype("string")
+        .str.strip()
+        .str.upper()
+        .eq("N/A")
+        .fillna(False)
+    )
+
+    df_merged["Level_Way_B"] = df_merged["Level_numeric"].copy()
+    df_merged.loc[is_na, "Level_Way_B"] = 1
 
     # 1. Xuất dashboard_data.csv (Dữ liệu chi tiết từng tiêu chí của từng ngân hàng)
     df_merged[dashboard_cols].to_csv(OUTPUT_DIR / "dashboard_data.csv", index=False, encoding='utf-8-sig')

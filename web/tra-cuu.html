@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Tra cứu · Digital Banking Index</title>
+<meta content="Xếp hạng mức độ chuyển đổi số của 5 ngân hàng Việt Nam theo bộ chỉ số DBI: 140 tiêu chí, 6 trụ cột, dữ liệu công khai FY2025." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Lora:ital,wght@0,500;0,600;1,500&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
+</head>
+<body data-page="tra-cuu">
+<header class="topbar">
+<div class="wrap">
+<a class="logo" href="index.html"><span class="logo-mark">DBI</span><span>Digital Banking<small id="teamLabel">Nhóm</small></span></a>
+<nav class="nav">
+
+
+
+
+<a href="index.html">Trang chủ</a><a href="xep-hang.html">Xếp hạng</a><a href="so-sanh.html">So sánh</a><a aria-current="page" href="tra-cuu.html">Tra cứu</a><a href="phuong-phap.html">Phương pháp</a></nav>
+<label class="search">
+<svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+<input autocomplete="off" id="globalSearch" placeholder="Tìm ngân hàng hoặc tiêu chí" type="search"/>
+</label>
+<button aria-label="Hướng dẫn" class="btn icon-btn" id="helpBtn">?</button>
+</div>
+</header>
+<main class="wrap" id="top">
+<section class="hero">
+<div class="crumb">Nghiên cứu / <b>Tra cứu</b></div>
+<div class="eyebrow">Digital Banking Index</div>
+<div class="hero-row">
+<div>
+<h1>Tra cứu</h1>
+<p id="heroSub">So sánh 5 ngân hàng qua 140 tiêu chí và 6 trụ cột năng lực số.</p>
+</div>
+
+</div>
+<div class="filters" id="filters">
+<div class="f-group">
+<span class="f-label">Ngân hàng</span>
+<div class="seg" id="fBank"></div>
+</div>
+<div class="f-group">
+<span class="f-label">Thước đo</span>
+<div class="seg" id="fMeasure">
+<button class="on" data-v="pct">Digital Score (%)</button>
+<button data-v="lvl">Mức đạt trung bình /5</button>
+</div>
+</div>
+<div class="f-group">
+<span class="f-label">Trọng số</span>
+<select class="select" id="fScenario"></select>
+</div>
+<div class="f-group">
+<span class="f-label">Xử lý N/A</span>
+<div class="seg" id="fWay">
+<button class="on" data-v="A" title="Bỏ N/A khỏi trung bình (kết quả chính)">Cách A · bỏ N/A</button>
+<button data-v="B" title="Quy N/A thành Mức 1 (kiểm định độ nhạy)">Cách B · N/A = Mức 1</button>
+</div>
+</div>
+<button class="btn f-reset" id="resetBtn">↺ Đặt lại</button>
+<div class="f-summary" id="fSummary"></div>
+</div>
+</section>
+<!-- KPI -->
+
+<!-- top bank + profile -->
+
+<!-- steps -->
+
+<!-- ranking -->
+
+<!-- radar + gap -->
+
+<!-- heatmap -->
+
+<!-- DBI bar chart all scenarios -->
+
+<!-- lookup -->
+<section class="section" id="tra-cuu">
+<div class="card">
+<div class="card-head">
+<div><h2>Tra cứu minh chứng</h2><p class="sub">700 bản ghi · nhấn một dòng để xem mô tả 5 mức của tiêu chí</p></div>
+<button class="btn" id="exportLookup">↓ Xuất CSV đang lọc</button>
+</div>
+<div class="lk-filters">
+<input id="lkSearch" placeholder="Tìm mã, tên tiêu chí, minh chứng, nguồn…" type="search"/>
+<select class="select" id="lkBank"></select>
+<select class="select" id="lkPillar"></select>
+<select class="select" id="lkGroup"></select>
+<select class="select" id="lkLevel">
+<option value="">Mọi mức</option><option value="na">N/A</option>
+<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+</select>
+<button class="btn" id="lkClear">Xóa lọc</button>
+</div>
+<div style="overflow-x:auto">
+<table class="lk-table">
+<thead><tr><th>Mã</th><th>Tiêu chí</th><th>Ngân hàng</th><th>Mức</th><th>Minh chứng</th><th class="hide-sm">Nguồn</th><th class="hide-sm">Trang</th><th class="hide-sm">Năm</th></tr></thead>
+<tbody id="lkBody"></tbody>
+</table>
+</div>
+<div class="pager"><span id="lkInfo"></span><div class="btns"><button id="lkPrev">‹ Trước</button><button id="lkNext">Sau ›</button></div></div>
+</div>
+</section>
+<!-- method -->
+
+</main>
+<footer>
+<div class="wrap">
+<span>Digital Banking Index · <span id="footTeam"></span> · Nguồn: bộ dữ liệu minh chứng của nhóm (báo cáo công khai FY2025)</span>
+<span>Cập nhật <span id="footDate"></span> · <span class="pill-pre">Xếp hạng sơ bộ</span></span>
+</div>
+</footer>
+<div class="modal" id="help">
+<div class="box">
+<h3>Cách đọc trang này</h3>
+<ol>
+<li><b>Chọn ngân hàng</b> ở bộ lọc để xem riêng điểm và hồ sơ của ngân hàng đó.</li>
+<li><b>Đổi thước đo</b> giữa điểm % (0–100) và mức trung bình (1–5).</li>
+<li><b>Đổi trọng số và cách xử lý N/A</b> để xem thứ hạng có thay đổi không.</li>
+<li><b>Nhấn vào ô bản đồ hoặc dòng xếp hạng</b> để mở minh chứng tương ứng.</li>
+</ol>
+<p class="note">ⓘ Kết quả sơ bộ, cần đối chiếu nguồn và số trang trước khi trích dẫn.</p>
+<button class="btn btn-primary" id="helpClose">Đã hiểu</button>
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

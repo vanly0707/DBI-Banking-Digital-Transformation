@@ -1,237 +1,118 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Tổng quan · Digital Banking Index</title>
-<meta name="description" content="Xếp hạng mức độ chuyển đổi số của 5 ngân hàng Việt Nam theo bộ chỉ số DBI: 140 tiêu chí, 6 trụ cột, dữ liệu công khai FY2025.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Lora:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Trang chủ · Digital Banking Index</title>
+<meta content="Xếp hạng mức độ chuyển đổi số của 5 ngân hàng Việt Nam theo bộ chỉ số DBI: 140 tiêu chí, 6 trụ cột, dữ liệu công khai FY2025." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Lora:ital,wght@0,500;0,600;1,500&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
 </head>
-<body>
-
+<body data-page="index">
 <header class="topbar">
-  <div class="wrap">
-    <a class="logo" href="#top"><span class="logo-mark">DBI</span><span>Digital Banking<small id="teamLabel">Nhóm</small></span></a>
-    <nav class="nav">
-      <a href="#xep-hang">Xếp hạng</a>
-      <a href="#so-sanh">So sánh</a>
-      <a href="#tra-cuu">Tra cứu</a>
-      <a href="#phuong-phap">Phương pháp</a>
-    </nav>
-    <label class="search">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-      <input id="globalSearch" type="search" placeholder="Tìm ngân hàng hoặc tiêu chí" autocomplete="off">
-    </label>
-    <button class="btn icon-btn" id="helpBtn" aria-label="Hướng dẫn">?</button>
-  </div>
-</header>
+<div class="wrap">
+<a class="logo" href="index.html"><span class="logo-mark">DBI</span><span>Digital Banking<small id="teamLabel">Nhóm</small></span></a>
+<nav class="nav">
 
-<main id="top" class="wrap">
 
-  <section class="hero">
-    <div class="crumb">Nghiên cứu / <b>Tổng quan</b></div>
-    <div class="eyebrow">Tổng quan nghiên cứu</div>
-    <div class="hero-row">
-      <div>
-        <h1>Chuyển đổi số <em>ngân hàng.</em></h1>
-        <p id="heroSub">So sánh 5 ngân hàng qua 140 tiêu chí và 6 trụ cột năng lực số.</p>
-      </div>
-      <button class="btn" id="exportBtn">↓ Xuất dữ liệu</button>
-    </div>
 
-    <div class="filters" id="filters">
-      <div class="f-group">
-        <span class="f-label">Ngân hàng</span>
-        <div class="seg" id="fBank"></div>
-      </div>
-      <div class="f-group">
-        <span class="f-label">Thước đo</span>
-        <div class="seg" id="fMeasure">
-          <button data-v="pct" class="on">Digital Score (%)</button>
-          <button data-v="lvl">Mức đạt trung bình /5</button>
-        </div>
-      </div>
-      <div class="f-group">
-        <span class="f-label">Trọng số</span>
-        <select class="select" id="fScenario"></select>
-      </div>
-      <div class="f-group">
-        <span class="f-label">Xử lý N/A</span>
-        <div class="seg" id="fWay">
-          <button data-v="A" class="on" title="Bỏ N/A khỏi trung bình (kết quả chính)">Cách A · bỏ N/A</button>
-          <button data-v="B" title="Quy N/A thành Mức 1 (kiểm định độ nhạy)">Cách B · N/A = Mức 1</button>
-        </div>
-      </div>
-      <button class="btn f-reset" id="resetBtn">↺ Đặt lại</button>
-      <div class="f-summary" id="fSummary"></div>
-    </div>
-  </section>
 
-  <!-- KPI -->
-  <section class="section grid g-4" id="kpis"></section>
-
-  <!-- top bank + profile -->
-  <section class="section grid g-hero">
-    <div class="card top-bank" id="topBank"></div>
-    <div class="card profile" id="profile"></div>
-  </section>
-
-  <!-- steps -->
-  <section class="section">
-    <div class="steps">
-      <div class="step"><i>1</i><div><b>Chọn ngân hàng</b><span>Dùng bộ lọc phía trên</span></div></div>
-      <div class="step"><i>2</i><div><b>Đọc điểm năng lực</b><span>So sánh qua 6 trụ cột</span></div></div>
-      <div class="step"><i>3</i><div><b>Kiểm tra bằng chứng</b><span>Đối chiếu từng tiêu chí</span></div></div>
-    </div>
-  </section>
-
-  <!-- ranking -->
-  <section class="section" id="xep-hang">
-    <div class="card">
-      <div class="card-head">
-        <div><h2>Bảng xếp hạng</h2><p class="sub" id="rankSub">Điểm DBI · 6 trụ cột</p></div>
-      </div>
-      <div class="tabs" id="rankTabs"></div>
-      <table class="rank-table">
-        <thead><tr><th>Hạng</th><th>Ngân hàng</th><th id="rankScoreTh">Điểm</th><th class="hide-sm"></th><th class="hide-sm">Độ phủ</th><th>Phân loại</th></tr></thead>
-        <tbody id="rankBody"></tbody>
-      </table>
-      <div class="table-foot"><span>Hạng trên 5 ngân hàng · đồng điểm thì đồng hạng · nhấn một dòng để xem hồ sơ</span><span class="pill-pre">Sơ bộ</span></div>
-    </div>
-  </section>
-
-  <!-- radar + gap -->
-  <section class="section grid g-2" id="so-sanh">
-    <div class="card">
-      <div class="card-head">
-        <div><h2>So sánh năng lực số</h2><p class="sub">Hồ sơ 6 trụ cột của hai ngân hàng</p></div>
-        <div class="cmp-pick"><select class="select" id="cmpA"></select><span>vs</span><select class="select" id="cmpB"></select></div>
-      </div>
-      <div class="chart-box"><canvas id="radar"></canvas></div>
-      <div class="insight" id="radarInsight"></div>
-    </div>
-    <div class="card">
-      <div class="card-head">
-        <div><h2>Khoảng cách điểm theo trụ cột</h2><p class="sub">Cao nhất − thấp nhất giữa 5 ngân hàng</p></div>
-      </div>
-      <div id="gap"></div>
-      <div class="insight" id="gapInsight"></div>
-    </div>
-  </section>
-
-  <!-- heatmap -->
-  <section class="section">
-    <div class="card">
-      <div class="card-head">
-        <div><h2>Bản đồ năng lực số</h2><p class="sub">Nhấn một ô để xem minh chứng của ngân hàng ở trụ cột / nhóm đó</p></div>
-        <div class="seg" id="heatMode"><button data-v="pillar" class="on">6 trụ cột</button><button data-v="group">25 nhóm</button></div>
-      </div>
-      <div class="heat" id="heat"></div>
-      <div class="legend"><span>Thấp</span><span class="ramp"></span><span>Cao</span><span style="margin-left:14px">▨ Không có dữ liệu (toàn N/A)</span></div>
-    </div>
-  </section>
-
-  <!-- DBI bar chart all scenarios -->
-  <section class="section">
-    <div class="card">
-      <div class="card-head">
-        <div><h2>Điểm DBI theo kịch bản trọng số</h2><p class="sub" id="scnSub">So sánh kịch bản cơ sở với S1–S3</p></div>
-      </div>
-      <div class="chart-box" style="height:300px"><canvas id="scnChart"></canvas></div>
-    </div>
-  </section>
-
-  <!-- lookup -->
-  <section class="section" id="tra-cuu">
-    <div class="card">
-      <div class="card-head">
-        <div><h2>Tra cứu minh chứng</h2><p class="sub">700 bản ghi · nhấn một dòng để xem mô tả 5 mức của tiêu chí</p></div>
-        <button class="btn" id="exportLookup">↓ Xuất CSV đang lọc</button>
-      </div>
-      <div class="lk-filters">
-        <input id="lkSearch" type="search" placeholder="Tìm mã, tên tiêu chí, minh chứng, nguồn…">
-        <select class="select" id="lkBank"></select>
-        <select class="select" id="lkPillar"></select>
-        <select class="select" id="lkGroup"></select>
-        <select class="select" id="lkLevel">
-          <option value="">Mọi mức</option><option value="na">N/A</option>
-          <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
-        </select>
-        <button class="btn" id="lkClear">Xóa lọc</button>
-      </div>
-      <div style="overflow-x:auto">
-        <table class="lk-table">
-          <thead><tr><th>Mã</th><th>Tiêu chí</th><th>Ngân hàng</th><th>Mức</th><th>Minh chứng</th><th class="hide-sm">Nguồn</th><th class="hide-sm">Trang</th><th class="hide-sm">Năm</th></tr></thead>
-          <tbody id="lkBody"></tbody>
-        </table>
-      </div>
-      <div class="pager"><span id="lkInfo"></span><div class="btns"><button id="lkPrev">‹ Trước</button><button id="lkNext">Sau ›</button></div></div>
-    </div>
-  </section>
-
-  <!-- method -->
-  <section class="section grid g-2" id="phuong-phap">
-    <div class="card">
-      <h2>Phương pháp</h2>
-      <p class="sub">Bộ chỉ số DBI (QĐ 1567/QĐ-BKHCN 2025) · 6 trụ cột, 25 nhóm, 140 tiêu chí</p>
-      <div class="formula">Z = (Mức − 1) / 4 × 100</div>
-      <ul class="m-list">
-        <li>Điểm nhóm = trung bình Z các tiêu chí có điểm trong nhóm.</li>
-        <li>Điểm trụ cột = trung bình các nhóm có điểm.</li>
-      </ul>
-      <div class="formula">DBI = Σ(W × điểm trụ cột) / Σ W</div>
-      <ul class="m-list">
-        <li><b>Cách A (chính):</b> bỏ N/A khỏi trung bình, báo kèm độ phủ = số tiêu chí có điểm / 140.</li>
-        <li><b>Cách B (độ nhạy):</b> quy N/A thành Mức 1 (Z = 0), thưởng cho ngân hàng công bố nhiều hơn.</li>
-        <li>Mức trung bình /5 = 1 + Z / 25 (quy đổi tuyến tính từ thang 0–100).</li>
-        <li>Phân loại trên bảng xếp hạng lấy theo mức trung bình làm tròn xuống (1 Khởi đầu · 2 Cục bộ · 3 Mở rộng · 4 Toàn hàng · 5 Hệ sinh thái).</li>
-      </ul>
-      <h2 style="margin-top:18px;font-size:18px">Trọng số</h2>
-      <table class="small-table" id="wTable"></table>
-    </div>
-    <div class="card">
-      <h2>Kiểm định độ vững</h2>
-      <p class="sub">Spearman giữa thứ hạng mỗi phương án và kịch bản cơ sở · Cách A</p>
-      <table class="small-table" id="robustTable" style="margin-top:10px"></table>
-      <h2 style="margin-top:20px;font-size:18px">Mô phỏng trọng số ngẫu nhiên</h2>
-      <p class="sub" id="dirSub"></p>
-      <div id="dirichlet"></div>
-      <div class="stack-legend" id="dirLegend"></div>
-      <h2 style="margin-top:20px;font-size:18px">Hạn chế</h2>
-      <ul class="m-list">
-        <li>Dựa vào dữ liệu công khai: thiếu công bố chưa có nghĩa là chưa triển khai, nên đọc DBI cùng độ phủ.</li>
-        <li>Trung bình hai tầng làm tiêu chí ở nhóm ít tiêu chí có ảnh hưởng lớn hơn.</li>
-        <li>Chấm điểm có tính chủ quan; giảm bằng quy tắc "mức cao nhất đủ bằng chứng".</li>
-        <li>Mẫu chỉ 5 ngân hàng nên thứ hạng nhạy với chênh lệch nhỏ.</li>
-      </ul>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="wrap">
-    <span>Digital Banking Index · <span id="footTeam"></span> · Nguồn: bộ dữ liệu minh chứng của nhóm (báo cáo công khai FY2025)</span>
-    <span>Cập nhật <span id="footDate"></span> · <span class="pill-pre">Xếp hạng sơ bộ</span></span>
-  </div>
-</footer>
-
-<div class="modal" id="help">
-  <div class="box">
-    <h3>Cách đọc trang này</h3>
-    <ol>
-      <li><b>Chọn ngân hàng</b> ở bộ lọc để xem riêng điểm và hồ sơ của ngân hàng đó.</li>
-      <li><b>Đổi thước đo</b> giữa điểm % (0–100) và mức trung bình (1–5).</li>
-      <li><b>Đổi trọng số và cách xử lý N/A</b> để xem thứ hạng có thay đổi không.</li>
-      <li><b>Nhấn vào ô bản đồ hoặc dòng xếp hạng</b> để mở minh chứng tương ứng.</li>
-    </ol>
-    <p class="note">ⓘ Kết quả sơ bộ, cần đối chiếu nguồn và số trang trước khi trích dẫn.</p>
-    <button class="btn btn-primary" id="helpClose">Đã hiểu</button>
-  </div>
+<a aria-current="page" href="index.html">Trang chủ</a><a href="xep-hang.html">Xếp hạng</a><a href="so-sanh.html">So sánh</a><a href="tra-cuu.html">Tra cứu</a><a href="phuong-phap.html">Phương pháp</a></nav>
+<label class="search">
+<svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+<input autocomplete="off" id="globalSearch" placeholder="Tìm ngân hàng hoặc tiêu chí" type="search"/>
+</label>
+<button aria-label="Hướng dẫn" class="btn icon-btn" id="helpBtn">?</button>
 </div>
+</header>
+<main class="wrap" id="top">
+<section class="hero">
+<div class="crumb">Nghiên cứu / <b>Tổng quan</b></div>
+<div class="eyebrow">Tổng quan nghiên cứu</div>
+<div class="hero-row">
+<div>
+<h1>Chuyển đổi số <em>ngân hàng.</em></h1>
+<p id="heroSub">So sánh 5 ngân hàng qua 140 tiêu chí và 6 trụ cột năng lực số.</p>
+</div>
+<button class="btn" id="exportBtn">↓ Xuất dữ liệu</button>
+</div>
+<div class="filters" id="filters">
+<div class="f-group">
+<span class="f-label">Ngân hàng</span>
+<div class="seg" id="fBank"></div>
+</div>
+<div class="f-group">
+<span class="f-label">Thước đo</span>
+<div class="seg" id="fMeasure">
+<button class="on" data-v="pct">Digital Score (%)</button>
+<button data-v="lvl">Mức đạt trung bình /5</button>
+</div>
+</div>
+<div class="f-group">
+<span class="f-label">Trọng số</span>
+<select class="select" id="fScenario"></select>
+</div>
+<div class="f-group">
+<span class="f-label">Xử lý N/A</span>
+<div class="seg" id="fWay">
+<button class="on" data-v="A" title="Bỏ N/A khỏi trung bình (kết quả chính)">Cách A · bỏ N/A</button>
+<button data-v="B" title="Quy N/A thành Mức 1 (kiểm định độ nhạy)">Cách B · N/A = Mức 1</button>
+</div>
+</div>
+<button class="btn f-reset" id="resetBtn">↺ Đặt lại</button>
+<div class="f-summary" id="fSummary"></div>
+</div>
+</section>
+<!-- KPI -->
+<section class="section grid g-4" id="kpis"></section>
+<!-- top bank + profile -->
+<section class="section grid g-hero">
+<div class="card top-bank" id="topBank"></div>
+<div class="card profile" id="profile"></div>
+</section>
+<!-- steps -->
+<section class="section">
+<div class="steps">
+<div class="step"><i>1</i><div><b>Chọn ngân hàng</b><span>Dùng bộ lọc phía trên</span></div></div>
+<div class="step"><i>2</i><div><b>Đọc điểm năng lực</b><span>So sánh qua 6 trụ cột</span></div></div>
+<div class="step"><i>3</i><div><b>Kiểm tra bằng chứng</b><span>Đối chiếu từng tiêu chí</span></div></div>
+</div>
+</section>
+<!-- ranking -->
 
+<!-- radar + gap -->
+
+<!-- heatmap -->
+
+<!-- DBI bar chart all scenarios -->
+
+<!-- lookup -->
+
+<!-- method -->
+
+</main>
+<footer>
+<div class="wrap">
+<span>Digital Banking Index · <span id="footTeam"></span> · Nguồn: bộ dữ liệu minh chứng của nhóm (báo cáo công khai FY2025)</span>
+<span>Cập nhật <span id="footDate"></span> · <span class="pill-pre">Xếp hạng sơ bộ</span></span>
+</div>
+</footer>
+<div class="modal" id="help">
+<div class="box">
+<h3>Cách đọc trang này</h3>
+<ol>
+<li><b>Chọn ngân hàng</b> ở bộ lọc để xem riêng điểm và hồ sơ của ngân hàng đó.</li>
+<li><b>Đổi thước đo</b> giữa điểm % (0–100) và mức trung bình (1–5).</li>
+<li><b>Đổi trọng số và cách xử lý N/A</b> để xem thứ hạng có thay đổi không.</li>
+<li><b>Nhấn vào ô bản đồ hoặc dòng xếp hạng</b> để mở minh chứng tương ứng.</li>
+</ol>
+<p class="note">ⓘ Kết quả sơ bộ, cần đối chiếu nguồn và số trang trước khi trích dẫn.</p>
+<button class="btn btn-primary" id="helpClose">Đã hiểu</button>
+</div>
+</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="data.js"></script>
 <script src="app.js"></script>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Xếp hạng · Digital Banking Index</title>
+<meta content="Xếp hạng mức độ chuyển đổi số của 5 ngân hàng Việt Nam theo bộ chỉ số DBI: 140 tiêu chí, 6 trụ cột, dữ liệu công khai FY2025." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Lora:ital,wght@0,500;0,600;1,500&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
+</head>
+<body data-page="xep-hang">
+<header class="topbar">
+<div class="wrap">
+<a class="logo" href="index.html"><span class="logo-mark">DBI</span><span>Digital Banking<small id="teamLabel">Nhóm</small></span></a>
+<nav class="nav">
+
+
+
+
+<a href="index.html">Trang chủ</a><a aria-current="page" href="xep-hang.html">Xếp hạng</a><a href="so-sanh.html">So sánh</a><a href="tra-cuu.html">Tra cứu</a><a href="phuong-phap.html">Phương pháp</a></nav>
+<label class="search">
+<svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+<input autocomplete="off" id="globalSearch" placeholder="Tìm ngân hàng hoặc tiêu chí" type="search"/>
+</label>
+<button aria-label="Hướng dẫn" class="btn icon-btn" id="helpBtn">?</button>
+</div>
+</header>
+<main class="wrap" id="top">
+<section class="hero">
+<div class="crumb">Nghiên cứu / <b>Xếp hạng</b></div>
+<div class="eyebrow">Digital Banking Index</div>
+<div class="hero-row">
+<div>
+<h1>Xếp hạng</h1>
+<p id="heroSub">So sánh 5 ngân hàng qua 140 tiêu chí và 6 trụ cột năng lực số.</p>
+</div>
+<button class="btn" id="exportBtn">↓ Xuất dữ liệu</button>
+</div>
+<div class="filters" id="filters">
+<div class="f-group">
+<span class="f-label">Ngân hàng</span>
+<div class="seg" id="fBank"></div>
+</div>
+<div class="f-group">
+<span class="f-label">Thước đo</span>
+<div class="seg" id="fMeasure">
+<button class="on" data-v="pct">Digital Score (%)</button>
+<button data-v="lvl">Mức đạt trung bình /5</button>
+</div>
+</div>
+<div class="f-group">
+<span class="f-label">Trọng số</span>
+<select class="select" id="fScenario"></select>
+</div>
+<div class="f-group">
+<span class="f-label">Xử lý N/A</span>
+<div class="seg" id="fWay">
+<button class="on" data-v="A" title="Bỏ N/A khỏi trung bình (kết quả chính)">Cách A · bỏ N/A</button>
+<button data-v="B" title="Quy N/A thành Mức 1 (kiểm định độ nhạy)">Cách B · N/A = Mức 1</button>
+</div>
+</div>
+<button class="btn f-reset" id="resetBtn">↺ Đặt lại</button>
+<div class="f-summary" id="fSummary"></div>
+</div>
+</section>
+<!-- KPI -->
+
+<!-- top bank + profile -->
+
+<!-- steps -->
+
+<!-- ranking -->
+<section class="section" id="xep-hang">
+<div class="card">
+<div class="card-head">
+<div><h2>Bảng xếp hạng</h2><p class="sub" id="rankSub">Điểm DBI · 6 trụ cột</p></div>
+</div>
+<div class="tabs" id="rankTabs"></div>
+<table class="rank-table">
+<thead><tr><th>Hạng</th><th>Ngân hàng</th><th id="rankScoreTh">Điểm</th><th class="hide-sm"></th><th class="hide-sm">Độ phủ</th><th>Phân loại</th></tr></thead>
+<tbody id="rankBody"></tbody>
+</table>
+<div class="table-foot"><span>Hạng trên 5 ngân hàng · đồng điểm thì đồng hạng · nhấn một dòng để xem hồ sơ</span><span class="pill-pre">Sơ bộ</span></div>
+</div>
+</section>
+<!-- radar + gap -->
+
+<!-- heatmap -->
+
+<!-- DBI bar chart all scenarios -->
+
+<!-- lookup -->
+
+<!-- method -->
+
+</main>
+<footer>
+<div class="wrap">
+<span>Digital Banking Index · <span id="footTeam"></span> · Nguồn: bộ dữ liệu minh chứng của nhóm (báo cáo công khai FY2025)</span>
+<span>Cập nhật <span id="footDate"></span> · <span class="pill-pre">Xếp hạng sơ bộ</span></span>
+</div>
+</footer>
+<div class="modal" id="help">
+<div class="box">
+<h3>Cách đọc trang này</h3>
+<ol>
+<li><b>Chọn ngân hàng</b> ở bộ lọc để xem riêng điểm và hồ sơ của ngân hàng đó.</li>
+<li><b>Đổi thước đo</b> giữa điểm % (0–100) và mức trung bình (1–5).</li>
+<li><b>Đổi trọng số và cách xử lý N/A</b> để xem thứ hạng có thay đổi không.</li>
+<li><b>Nhấn vào ô bản đồ hoặc dòng xếp hạng</b> để mở minh chứng tương ứng.</li>
+</ol>
+<p class="note">ⓘ Kết quả sơ bộ, cần đối chiếu nguồn và số trang trước khi trích dẫn.</p>
+<button class="btn btn-primary" id="helpClose">Đã hiểu</button>
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -21,15 +21,19 @@ pip install -r requirements.txt
 python src/scoring.py          # mỗi lần sửa file Excel minh chứng thì chạy lại
 ```
 
-Mở `web/index.html` bằng trình duyệt (double-click) là xem được. Cần mạng để tải font và Chart.js.
+## C1: Chạy web trên VSCode
+py -m pip install -r requirements.txt
+py -m pip install pyyaml
+py src/scoring.py
+py -m http.server 8000 --directory ".\web"
+
+# Sau đó click
+ http://localhost:8000/
+
+## C2: Mở website đã deploy lên vercel
+https://dbi-banking-digital-transformation.vercel.app/ 
 
 **Đổi tên nhóm:** sửa dòng `const TEAM_LABEL = "Nhóm 0X";` ở đầu `web/app.js`.
-
-## Đưa lên mạng (miễn phí)
-
-**Vercel** (giống nhóm 3): vercel.com → Add New → Project → chọn repo → *Root Directory* chọn `web` → Framework: *Other* → Deploy.
-
-**GitHub Pages**: Settings → Pages → Source: *GitHub Actions* hoặc deploy từ nhánh, thư mục `/web` (nếu chỉ chọn được `/root` hoặc `/docs` thì dùng Vercel).
 
 ## Các phần trên web
 
@@ -43,9 +47,3 @@ Mở `web/index.html` bằng trình duyệt (double-click) là xem được. C�
 8. Tra cứu 700 bản ghi minh chứng (lọc, tìm, xem mô tả 5 mức, xuất CSV)
 9. Phương pháp, bảng trọng số, Spearman, mô phỏng Dirichlet, hạn chế
 
-## Lưu ý về dữ liệu
-
-- `scoring.py` đọc thẳng file Excel, không phụ thuộc `merge_validate.py`.
-- Ô Level để trống được coi là N/A (giống `N/A`).
-- Trong `merge_validate.py` hiện tại, Cách A và Cách B đang đảo ngược so với `docs/methodology.md`
-  (Cách A quy N/A = 0, Cách B bỏ N/A), và N/A bị tính là 0 chứ không phải Mức 1. Nên báo người phụ trách file đó sửa.

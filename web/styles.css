@@ -291,3 +291,42 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .legend .ramp{background:linear-gradient(90deg,var(--sand),var(--line),var(--brand-700),var(--brand-900))}
 .pill-pre{background:var(--sand);color:var(--brand-900)}
 @media(max-width:850px){.topbar .wrap{height:auto;min-height:64px;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}.topbar .nav{order:3;width:100%;overflow-x:auto}.topbar .search{max-width:none}.nav a{white-space:nowrap}}
+
+/* === CẬP NHẬT 18-10-2026: chỉ trang So sánh === */
+body[data-page="so-sanh"] .gap-track { background:#F2ECDF; overflow:visible; }
+body[data-page="so-sanh"] .gap-seg { background:var(--theme-soft); opacity:.86; }
+body[data-page="so-sanh"] .gap-dot {
+  color:#fff; width:26px; height:26px; margin-left:-13px; top:1px;
+  border-width:2px; box-shadow:0 1px 2px rgba(0,0,0,.22),0 0 0 1px rgba(255,255,255,.5);
+  font-size:9px; font-weight:800; z-index:2; text-shadow:0 1px 2px rgba(0,0,0,.28);
+}
+body[data-page="so-sanh"] .gap-dot:hover,
+body[data-page="so-sanh"] .gap-dot:focus-visible { transform:scale(1.19); z-index:9; outline:2px solid var(--brand-900);outline-offset:2px; }
+body[data-page="so-sanh"] .gap-row { padding-block:2px; }
+/* Ảnh ngân hàng, dùng chung ở thẻ hồ sơ trên Trang chủ. */
+.pf-visual.bank-art .bank-photo { position:absolute; inset:0; width:100%; height:100%;object-fit:cover; object-position:center 40%; z-index:0;filter:saturate(.92);}
+.pf-visual.bank-art:has(.bank-photo:not([style*="display: none"]))::after {
+ content:""; position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(0,0,0,.58),transparent 68%);z-index:0;
+}
+.pf-visual.bank-art:has(.bank-photo:not([style*="display: none"]))::before {display:none;}
+.pf-visual.bank-art .pf-chips,.pf-visual.bank-art .pf-mono {z-index:1;}
+.pf-visual.bank-art .pf-mono {top:10px;right:10px;}
+.pf-visual.bank-art .pf-mono .bank-logo {box-shadow:0 2px 9px #0005;}
+.pf-visual.bank-art .pf-chip {position:relative;z-index:2;}
+
+.bank-logo {position:relative; overflow:hidden;}
+.bank-logo .brand-symbol {position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#fff;border-radius:50%;padding:2px;z-index:1;}
+.bank-logo .brand-fallback {position:relative;z-index:0;}
+
+/* Đưa logo/chữ lên trên ảnh nền */
+.pf-visual.bank-art .pf-brand-lockup,.pf-visual.bank-art .pf-watermark{position:relative;z-index:2;}
+
+/* ===== Bố cục thẻ hồ sơ ngân hàng: logo + tên ở góc trên trái, chip ở góc dưới phải ===== */
+.profile .pf-visual.bank-art{display:block;}
+.pf-visual.bank-art .pf-brand-lockup{position:absolute;top:14px;left:14px;right:14px;z-index:2;display:flex;align-items:center;gap:10px;text-shadow:0 1px 4px rgba(0,0,0,.55);}
+.pf-visual.bank-art .pf-brand-lockup > div{display:flex;flex-direction:column;line-height:1.2;min-width:0;}
+.pf-visual.bank-art .pf-brand-lockup strong{display:block;font-size:17px;}
+.pf-visual.bank-art .pf-brand-lockup small{display:block;font-size:11px;letter-spacing:.08em;opacity:.92;}
+.pf-visual.bank-art .pf-watermark{display:none;}
+.pf-visual.bank-art .pf-chips{position:absolute;right:14px;bottom:14px;z-index:2;flex-direction:column;align-items:flex-end;gap:6px;flex-wrap:nowrap;}
+.pf-visual.bank-art:has(.bank-photo:not([style*="display: none"]))::after{background:linear-gradient(to bottom,rgba(0,0,0,.55),transparent 45%),linear-gradient(to top,rgba(0,0,0,.35),transparent 50%);}

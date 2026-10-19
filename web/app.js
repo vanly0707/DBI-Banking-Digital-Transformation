@@ -42,6 +42,7 @@ const BANK_MEDIA = Object.freeze({
     const theme = THEMES[activeBank()] || THEMES.Vietcombank;
     const vars = {'--brand-900':theme.dark,'--brand-700':theme.primary,'--brand-500':theme.primary,'--accent':theme.primary,'--accent-soft':theme.soft,'--cream':theme.page,'--sand':theme.soft,'--sand-2':theme.border,'--line':theme.border,'--ink':theme.text,'--ink-2':theme.text,'--ink-3':theme.dark,'--theme-primary':theme.primary,'--theme-soft':theme.soft};
     Object.entries(vars).forEach(([k,v])=>document.documentElement.style.setProperty(k,v));
+    try { sessionStorage.setItem('dbi-theme', JSON.stringify({vars, team: TEAM_LABEL})); } catch (_) {}
     document.body.dataset.bank = activeBank();
     document.querySelectorAll('.bank-art').forEach(el => el.style.setProperty('--art-color',theme.primary));
     const bg = document.querySelector('.topbar'); if(bg) bg.style.background = theme.page;
@@ -167,9 +168,6 @@ const BANK_MEDIA = Object.freeze({
     $("#exportLookup")?.addEventListener("click", exportLookup);
     }
     $("#exportBtn")?.addEventListener("click", exportSummary);
-    $("#helpBtn").addEventListener("click", () => $("#help").classList.add("open"));
-    $("#helpClose").addEventListener("click", () => $("#help").classList.remove("open"));
-    $("#help").addEventListener("click", e => { if (e.target.id === "help") e.currentTarget.classList.remove("open"); });
 
     $("#globalSearch").addEventListener("keydown", e => {
       if (e.key !== "Enter") return;
@@ -495,7 +493,6 @@ const BANK_MEDIA = Object.freeze({
     const tr = e.target.closest("tr[data-b]"); if (!tr) return;
     S.bank = tr.dataset.b; applyTheme(); route("index.html",{bank:S.bank});
   });
-  document.addEventListener("keydown", e => { if (e.key === "Escape") $("#help").classList.remove("open"); });
 
   buildFilters();
   render();

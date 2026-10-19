@@ -3,7 +3,7 @@
   "use strict";
 
   // ====== Sửa tên nhóm ở đây ======
-  const TEAM_LABEL = "Nhóm 0X";
+  const TEAM_LABEL = "Nhóm 6";
 
   const D = window.DBI_DATA;
   if (!D) { document.body.innerHTML = "<p style='padding:40px'>Không tìm thấy data.js. Hãy chạy <code>python src/scoring.py</code> trước.</p>"; return; }
